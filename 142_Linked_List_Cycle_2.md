@@ -72,6 +72,51 @@ func detectCycle(head *ListNode) *ListNode {
 }
 ```
 
+**別解**
+再帰を用いて解く
+
+時間計算量(N)
+空間計算量(N)
+
+LeetCodeでは関数外に変数を定義できないため、この方法ではError。
+```Go
+visited := make(map[*ListNode]struct{})
+
+func detectCycle(head *ListNode) *ListNode {
+    if head == nil || head.Next == nil {
+        return nil
+    }
+
+    if _, ok := visited[head]; ok {
+        return head
+    }
+
+    visited[head] = struct{}{}
+    return detectCycle(head.Next)
+}
+```
+
+[他の方](https://github.com/hroc135/leetcode/pull/2)の以下の回答のように、関数を定義するのはできるらしい、、、
+```Go
+func detectCycle(head *ListNode) *ListNode {
+    visited := make(map[*ListNode]struct{})
+    return checkNode(head, visited)
+}
+
+func checkNode(node *ListNode, visited map[*ListNode]struct{}) *ListNode {
+    if node == nil {
+        return nil
+    }
+
+    if _, exist := visited[node]; exist {
+        return node
+    }
+
+    visited[node] = struct{}{}
+    return checkNode(node.Next, visited)
+}
+```
+
 メモ
 
 **slowポインタとfastポインタが始めに出会った地点が、サイクルの開始点となるロジックについて**

@@ -1,0 +1,90 @@
+問題：https://leetcode.com/problems/add-two-numbers/
+
+### Step 1（普通に解いてみる）
+
+**解法1**：
+各Listから値を復元、その和を計算し、一桁ずつLinkedListに保存していく
+この方法だと、桁数が大きな値に対してオーバーフローが発生してしまい、正解とはならなかった。
+
+時間計算量(N)
+空間計算量(1)
+
+```Go
+func restoredNumFromLinkedList(l *ListNode) int {
+    restored := 0
+    numOfDigits := 1
+    for l != nil {
+        restored += l.Val * numOfDigits
+        numOfDigits *= 10
+        l = l.Next
+    }
+    return restored
+}
+
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    restoredL1 := restoredNumFromLinkedList(l1)
+    restoredL2 := restoredNumFromLinkedList(l2)
+
+    sum := restoredL1 + restoredL2
+    sentinel := &ListNode{}
+    node := sentinel
+    for {
+        digit := sum % 10
+        node.Val = digit
+        
+        sum /= 10
+        if sum == 0 {
+            node.Next = nil
+            break
+        } else {
+            node.Next = &ListNode{}
+            node = node.Next
+        }
+    }
+    return sentinel.Next
+}
+```
+
+- 他の解法
+  - １の位から順番に足していく
+- 他の人の解答
+  - https://github.com/hroc135/leetcode/blob/92deda68dcae5fd3541e5c171e36cad35fcd1557/2AddTwoNumbers.md
+  - https://github.com/shintaro1993/arai60/blob/01f70d5443f292509aaf3951d6dec8bdbee22634/add-two-numbers/memo.md
+
+### Step2（別の解法があればそちらを試す）
+1のくらいから足していく。
+今回の問題では、値があるか確認する前にNextノードを定義してしまうと、ゼロ値が入力されてしまう問題があったため、次の桁の値が確定したタイミングでNextノードを定義する必要があった。番兵ノードを配置することで、その処理をすっきりと書くことができた。
+各桁の足し算の結果を保持する変数の名前は何が適切なのか調べたところ、carryが適切とのことだった。
+carryは「（物理的に）ものを運ぶ」という理解だったが、繰り上げなどで情報を運ぶというニュアンスにも使えることがわかり少し面白かった。
+nodeの変数名については、問題ごとに何が適切か議論があるが、今回はnodeが一つで、あまり複雑なこともしないため、単純に今注目しているノードという意味で、nodeとした。
+
+時間計算量(N)
+空間計算量(1)
+
+```Go
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    sentinel := &ListNode{}
+    node, carry := sentinel, 0
+
+    for l1 != nil || l2 != nil || carry > 0 {
+        if l1 != nil {
+            carry += l1.Val
+            l1 = l1.Next
+        }
+        if l2 != nil {
+            carry += l2.Val
+            l2 = l2.Next
+        }
+
+        node.Next = &ListNode{Val: carry % 10}
+        node = node.Next
+        carry /= 10
+    }
+
+    return sentinel
+}
+```
+
+メモ
+
+### Step3（関連知識を調べる）

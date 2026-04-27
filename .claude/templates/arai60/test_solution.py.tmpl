@@ -1,0 +1,14 @@
+import pytest
+from solution import Solution
+
+
+class TestSolution:
+    def setup_method(self):
+        self.sol = Solution()
+
+    @pytest.mark.parametrize("inputs, expected", [
+        # (inputs_tuple, expected_output),
+        # TODO: Claudeが網羅的なケースを生成
+    ])
+    def test_{{FUNCTION_NAME}}(self, inputs, expected):
+        assert self.sol.{{FUNCTION_NAME}}(*inputs) == expected

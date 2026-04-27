@@ -1,1 +1,9 @@
-go.mod
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.venv/
+*.egg-info/
+dist/
+.vscode/
+.idea/

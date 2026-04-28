@@ -1,6 +1,6 @@
 # LeetCode 新井60問
 
-新井60問 (LeetCode) を Claude Code と協働して学習するためのリポジトリです。
+[arai60 (LeetCode) ](https://hayapenguin.com/notes/arai60)を Claude Code と協働して学習するためのリポジトリです。
 
 ## セットアップ
 
@@ -13,6 +13,7 @@ uv sync
 ```bash
 uv run python tasks.py test 001   # 問題001のテストを実行
 uv run python tasks.py test-all   # 全問題のテストを実行
+uv run python tasks.py run 001    # 問題001のsolution.pyを直接実行（デバッグ用）
 uv run python tasks.py list       # 問題一覧を表示
 ```
 

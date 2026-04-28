@@ -18,6 +18,14 @@ def cmd_test_all(_args):
     subprocess.run(["uv", "run", "pytest", str(PROBLEMS_DIR), "-v"])
 
 
+def cmd_run(args):
+    solution = PROBLEMS_DIR / args.number / "solution.py"
+    if not solution.exists():
+        print(f"Error: problems/{args.number}/solution.py not found", file=sys.stderr)
+        sys.exit(1)
+    subprocess.run(["uv", "run", "python", str(solution)])
+
+
 def cmd_list(_args):
     dirs = sorted(p for p in PROBLEMS_DIR.iterdir() if p.is_dir())
     if not dirs:
@@ -34,6 +42,10 @@ def main():
     p_test = sub.add_parser("test", help="run tests for a specific problem")
     p_test.add_argument("number", help="problem number (e.g. 001)")
     p_test.set_defaults(func=cmd_test)
+
+    p_run = sub.add_parser("run", help="run solution.py directly for a specific problem")
+    p_run.add_argument("number", help="problem number (e.g. 001)")
+    p_run.set_defaults(func=cmd_run)
 
     p_all = sub.add_parser("test-all", help="run tests for all problems")
     p_all.set_defaults(func=cmd_test_all)

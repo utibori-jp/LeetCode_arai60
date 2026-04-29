@@ -2,6 +2,9 @@
 
 ### General
 - Comments in English
+- Variable names must convey type, role, or content — avoid generic names like `seen`, `current`, `result`, `temp`
+  - e.g. `num_to_index` instead of `seen`, `target_complement` instead of `complement`
+  - Apply to all sample code in reviews and explanations
 
 ## Git / Commit Conventions
 

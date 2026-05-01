@@ -14,9 +14,14 @@
       "Bash(git branch:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(mkdir -p problems/*)",
-      "Write(problems/*)",
-      "Edit(problems/*)"
+
+      "Bash(mkdir:*)",
+      "Read(.claude/templates/**)",
+      "Write(problems/**)",
+      "Read(problems/**)",
+      "Edit(problems/**)",
+      "Read(CLAUDE.md)",
+      "Edit(CLAUDE.md)"
     ]
   }
 }

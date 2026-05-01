@@ -8,7 +8,7 @@ from typing import List
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-    # 初回（単純解法）
+        # 初回（単純解法）
         # for i in range(len(nums)-1):
         #     # print(f"=== i = {i} ====")
         #     for j in range(i+1, len(nums), 1):
@@ -17,7 +17,7 @@ class Solution:
         
         # pass
 
-    # 復習（2026/04/29）
+        # 2回目（2026/04/29）
         num_to_index = {}
         for i, num in enumerate(nums):
             complement = target - num

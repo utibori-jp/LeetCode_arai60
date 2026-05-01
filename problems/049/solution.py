@@ -8,7 +8,7 @@ from collections import defaultdict
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         
-    # 初回回答（2026/04/29）
+        # 初回（2026/04/29）
         # anagram_map = defaultdict(list)
 
         # for word in strs:
@@ -17,7 +17,7 @@ class Solution:
         
         # return list(anagram_map.values())
 
-    # 2回目（2026/04/30）
+        # 2回目（2026/04/30）
         anagram_map = defaultdict(list)
         for word in strs:
             char_freq = [0] * 26

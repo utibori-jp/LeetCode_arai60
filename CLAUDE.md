@@ -49,3 +49,4 @@ that fall on a review interval (1 day / 1 week / 1 month after the solved date).
 - Do not add explanatory comments to test cases — only input/output pairs
 - Do not modify the user's solution.py during review — put suggestions in notes.md
 - Do not auto-fetch problem statements from LeetCode — the user pastes them manually
+- Do not write anything in the "学んだこと" section of notes.md — that section is reserved for the user's own reflection

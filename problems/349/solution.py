@@ -8,15 +8,17 @@ from typing import List
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         # 初回（2026/05/01）
-        nums1_set = set(nums1)
-        nums2_set = set(nums2)
-        ans = []
-        for num1 in nums1_set:
-            if num1 in nums2_set: ans.append(num1)
-        return ans 
+        # nums1_set = set(nums1)
+        # nums2_set = set(nums2)
+        # ans = []
+        # for num1 in nums1_set:
+        #     if num1 in nums2_set: ans.append(num1)
+        # return ans 
 
         # 2回目（2026/05/02）
-        # TODO: implement
+        nums1_set = set(nums1)
+        nums2_set = set(nums2)
+        return list(nums1_set & nums2_set)
         pass
 
 

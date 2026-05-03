@@ -10,17 +10,24 @@ class Solution:
     def numUniqueEmails(self, emails: List[str]) -> int:
         # 初回（2026/05/02）
         pattern_plus = r"\+.*"
-        pattern_dots = r"\."
+        # pattern_dots = r"\."
+        # email_set = set()
+        # for email in emails:
+        #     local_name, domain_name = email.split('@')
+        #     local_name = re.sub(pattern_plus, "", local_name)
+        #     local_name = re.sub(pattern_dots, "", local_name)
+        #     email_set.add(f"{local_name}@{domain_name}")
+        # return len(email_set)
+
+        # 2回目（2026/05/03）
         email_set = set()
         for email in emails:
+            print(email)
             local_name, domain_name = email.split('@')
-            local_name = re.sub(pattern_plus, "", local_name)
-            local_name = re.sub(pattern_dots, "", local_name)
+            local_name = local_name.split('+')[0].replace('.','')
             email_set.add(f"{local_name}@{domain_name}")
         return len(email_set)
-
-        # 2回目（）
-        # TODO: implement
+            
         pass
 
 
